@@ -1,0 +1,21 @@
+name: hcloud
+description: A Dart library for the Hetzner Cloud API
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: ^3.4.3
+
+# Add regular dependencies here.
+dependencies:
+  json_annotation: ^4.9.0
+  logger: ^2.3.0
+  retrofit: ^4.1.0
+  # path: ^1.8.0
+
+dev_dependencies:
+  build_runner: ^2.4.11
+  json_serializable: ^6.8.0
+  lints: ^3.0.0
+  retrofit_generator: ^8.1.1
+  test: ^1.24.0
