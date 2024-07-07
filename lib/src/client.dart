@@ -1,13 +1,15 @@
 import 'package:dio/dio.dart';
-import 'package:hcloud/src/clients/ssh_keys_client.dart';
 
 import 'api_client.dart';
+import 'clients/actions_client.dart';
+import 'clients/ssh_keys_client.dart';
 
 class Client {
   late final ApiClient restClient;
   final String token;
   int maxPerPage = 50;
 
+  late ActionsClient actions;
   late SSHKeysClient sshKeys;
 
   Client(this.token) {
@@ -17,5 +19,6 @@ class Client {
     restClient = ApiClient(dio);
 
     sshKeys = SSHKeysClient(this);
+    actions = ActionsClient(this);
   }
 }
