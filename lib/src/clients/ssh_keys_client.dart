@@ -15,7 +15,7 @@ class SSHKeysClient {
     int page = 1;
     while (true) {
       try {
-        final response = await _client.restClient.getSSHKeys({
+        final response = await _client.apiClient.getSSHKeys({
           'page': page,
           'per_page': _client.maxPerPage,
         });
@@ -39,7 +39,7 @@ class SSHKeysClient {
     int id,
   ) async {
     try {
-      final response = await _client.restClient.getSSHKey(id);
+      final response = await _client.apiClient.getSSHKey(id);
       return response.sshKey;
     } catch (e, _) {
       if (e is DioException) {
@@ -65,7 +65,7 @@ class SSHKeysClient {
     };
 
     try {
-      final response = await _client.restClient.createSSHKey(body);
+      final response = await _client.apiClient.createSSHKey(body);
       return response.sshKey;
     } catch (e, _) {
       if (e is DioException) {
@@ -82,7 +82,7 @@ class SSHKeysClient {
     int id,
   ) async {
     try {
-      await _client.restClient.deleteSSHKey(id);
+      await _client.apiClient.deleteSSHKey(id);
     } catch (e, _) {
       if (e is DioException) {
         throw ErrorHandler.dioException(e);
@@ -112,7 +112,7 @@ class SSHKeysClient {
     };
 
     try {
-      final response = await _client.restClient.updateSSHKey(id, body);
+      final response = await _client.apiClient.updateSSHKey(id, body);
       return response.sshKey;
     } catch (e, _) {
       if (e is DioException) {

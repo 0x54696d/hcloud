@@ -15,7 +15,7 @@ class ActionsClient {
     int page = 1;
     while (true) {
       try {
-        final response = await _client.restClient.getActions({
+        final response = await _client.apiClient.getActions({
           'page': page,
           'per_page': _client.maxPerPage,
         });
@@ -39,7 +39,7 @@ class ActionsClient {
     int id,
   ) async {
     try {
-      final response = await _client.restClient.getAction(id);
+      final response = await _client.apiClient.getAction(id);
       return response.action;
     } catch (e, _) {
       if (e is DioException) {
