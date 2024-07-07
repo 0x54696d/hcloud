@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 import 'models/action_response.dart';
+import 'models/datacenter_response.dart';
+import 'models/location_response.dart';
 import 'models/ssh_key_response.dart';
 
 part 'api_client.g.dart';
@@ -17,6 +19,24 @@ abstract class ApiClient {
 
   @GET('/actions/{id}')
   Future<ActionResponse> getAction(@Path('id') int id);
+
+  // Datacenters
+
+  @GET('/datacenters')
+  Future<DatacentersResponse> getDatacenters(
+      @Queries() Map<String, dynamic>? queries);
+
+  @GET('/datacenters/{id}')
+  Future<DatacenterResponse> getDatacenter(@Path('id') int id);
+
+  // Locations
+
+  @GET('/locations')
+  Future<LocationsResponse> getLocations(
+      @Queries() Map<String, dynamic>? queries);
+
+  @GET('/locations/{id}')
+  Future<LocationResponse> getLocation(@Path('id') int id);
 
   // SSH Keys
 
