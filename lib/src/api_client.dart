@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import 'models/action_response.dart';
 import 'models/ssh_key_response.dart';
 
 part 'api_client.g.dart';
@@ -8,6 +9,16 @@ part 'api_client.g.dart';
 @RestApi(baseUrl: 'https://api.hetzner.cloud/v1')
 abstract class ApiClient {
   factory ApiClient(Dio dio) = _ApiClient;
+
+  // Actions
+
+  @GET('/actions')
+  Future<ActionsResponse> getActions(@Queries() Map<String, dynamic>? queries);
+
+  @GET('/actions/{id}')
+  Future<ActionResponse> getAction(@Path('id') int id);
+
+  // SSH Keys
 
   @GET('/ssh_keys')
   Future<SSHKeysResponse> getSSHKeys(@Queries() Map<String, dynamic>? queries);

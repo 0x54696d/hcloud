@@ -21,6 +21,62 @@ class _ApiClient implements ApiClient {
   String? baseUrl;
 
   @override
+  Future<ActionsResponse> getActions(Map<String, dynamic>? queries) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(queries ?? <String, dynamic>{});
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ActionsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/actions',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final _value = ActionsResponse.fromJson(_result.data!);
+    return _value;
+  }
+
+  @override
+  Future<ActionResponse> getAction(int id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ActionResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/actions/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final _value = ActionResponse.fromJson(_result.data!);
+    return _value;
+  }
+
+  @override
   Future<SSHKeysResponse> getSSHKeys(Map<String, dynamic>? queries) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
